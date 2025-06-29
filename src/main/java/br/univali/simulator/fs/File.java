@@ -1,4 +1,4 @@
-package br.univali.simulator.FileSystem;
+package br.univali.simulator.fs;
 
 import java.util.Date;
 

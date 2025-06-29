@@ -1,10 +1,10 @@
-package br.univali.simulator.FileSystem;
+package br.univali.simulator.fs;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.univali.simulator.Exceptions.ExistingFileException;
+import br.univali.simulator.exceptions.ExistingFileException;
 
 public class Folder extends FileControlBlock {
     public Map<String, FileControlBlock> files = new HashMap<>();

@@ -1,4 +1,4 @@
-package br.univali.simulator.UserSessions;
+package br.univali.simulator.ui;
 
 public class InstructionParser {
     

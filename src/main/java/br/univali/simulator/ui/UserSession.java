@@ -1,8 +1,8 @@
-package br.univali.simulator.UserSessions;
+package br.univali.simulator.ui;
 
 import java.util.Scanner;
 
-import br.univali.simulator.FileSystem.Folder;
+import br.univali.simulator.fs.Folder;
 
 public class UserSession {
 
@@ -20,7 +20,5 @@ public class UserSession {
         if (line.equals("exit")) {
             throw new Exception("exiting");
         }
-
     }
-
 }

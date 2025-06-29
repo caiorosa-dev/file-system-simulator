@@ -1,4 +1,4 @@
-package br.univali.simulator.Exceptions;
+package br.univali.simulator.exceptions;
 
 public class CodeExitedException extends Exception {
     
