@@ -1,30 +1,22 @@
 package br.univali.simulator.fs;
 
-import java.util.Date;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-import br.univali.simulator.exceptions.ExistingFileException;
+public final class Folder extends FileControlBlock {
 
-public class Folder extends FileControlBlock {
-    public Map<String, FileControlBlock> files = new HashMap<>();
+    private final Map<String, FileControlBlock> children = new LinkedHashMap<>();
 
-    public void addFile(FileControlBlock file) throws ExistingFileException{
-        var existingFile = files.get(file.getName());
-        if(existingFile != null){
-            throw new ExistingFileException();
-        }else{
-            this.files.put(file.getName(), file);
-        }
-
+    Folder(String name, User owner, int mode){
+        super(name, owner, mode);
     }
-
-    public void createFolder(String name) throws ExistingFileException{
-        Folder folder = new Folder(name);
-        this.addFile(folder);
+    /* ── CRUD de filhos ─────────────────────────────── */
+    public void addChild(FileControlBlock f){
+        if(children.containsKey(f.getName()))
+            throw new IllegalArgumentException("Já existe: "+f.getName());
+        children.put(f.getName(), f);
     }
-
-    public Folder(String name) {
-        super(new Date(), new Date(), new Date(), name);
-    }
+    public FileControlBlock child(String n){ return children.get(n); }
+    public void removeChild(String n){ children.remove(n); }
+    public Map<String, FileControlBlock> list(){ return children; }
 }
