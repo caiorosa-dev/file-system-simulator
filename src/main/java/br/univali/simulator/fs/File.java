@@ -6,12 +6,12 @@ public class File extends FileControlBlock {
     private String data;
 
     public void setDate(String newData){
-        this.edited_at = new Date();
+        this.editedAt = new Date();
         this.data = newData;
     }
 
     public String getData(){
-        this.readed_at = new Date();
+        this.readAt = new Date();
         return this.data;
     }
 

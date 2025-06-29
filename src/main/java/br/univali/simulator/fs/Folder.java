@@ -8,7 +8,6 @@ import br.univali.simulator.exceptions.ExistingFileException;
 
 public class Folder extends FileControlBlock {
     public Map<String, FileControlBlock> files = new HashMap<>();
-    private Folder rootFolder;
 
     public void addFile(FileControlBlock file) throws ExistingFileException{
         var existingFile = files.get(file.getName());
@@ -22,7 +21,6 @@ public class Folder extends FileControlBlock {
 
     public void createFolder(String name) throws ExistingFileException{
         Folder folder = new Folder(name);
-        folder.rootFolder = this;
         this.addFile(folder);
     }
 

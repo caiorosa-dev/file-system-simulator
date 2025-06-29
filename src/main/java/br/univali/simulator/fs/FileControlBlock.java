@@ -8,14 +8,13 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public abstract class FileControlBlock {
-    protected Date created_at;
-    protected Date edited_at;
-    protected Date readed_at;
+    protected Date createdAt;
+    protected Date editedAt;
+    protected Date readAt;
     protected String name;
 
-    public void rename(String newName){
+    public void rename(String newName) {
         this.name = newName;
-        this.edited_at = new Date();
+        this.editedAt = new Date();
     }
-    
 }
