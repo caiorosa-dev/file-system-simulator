@@ -1,6 +1,7 @@
 package br.univali.simulator.ui.commands;
 
 import br.univali.simulator.ui.AbstractCommand;
+import br.univali.simulator.ui.TerminalColors;
 import br.univali.simulator.ui.ShellContext;
 
 public class AddUserCommand extends AbstractCommand {
@@ -15,6 +16,6 @@ public class AddUserCommand extends AbstractCommand {
         
         String username = args[0];
         context.createUser(username);
-        return "Usuário '" + username + "' criado com sucesso";
+        return TerminalColors.colorizeSuccess("Usuário '" + username + "' criado com sucesso");
     }
 } 

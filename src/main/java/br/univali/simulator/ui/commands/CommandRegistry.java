@@ -43,6 +43,9 @@ public class CommandRegistry {
         
         // System information commands
         registerCommand(new BitmapCommand());
+        registerCommand(new StatCommand());
+        registerCommand(new FileCommand());
+        registerCommand(new ClearCommand());
         
         // Help command (needs registry reference)
         registerCommand(new HelpCommand(this));
@@ -60,6 +63,8 @@ public class CommandRegistry {
         aliases.put("del", "rm");
         aliases.put("md", "mkdir");
         aliases.put("rd", "rm");
+        aliases.put("cls", "clear");
+        aliases.put("ll", "ls -l");
     }
     
     public void registerCommand(Command command) {

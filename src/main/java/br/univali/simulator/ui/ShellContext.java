@@ -54,8 +54,11 @@ public class ShellContext {
     }
     
     public String getPrompt() {
-        return String.format("%s@simple-fs:%s$ ", 
-            currentUser.getName(), 
-            fileSystem.pwd());
+        return String.format("%s@%ssimple-fs%s:%s%s$ ", 
+            TerminalColors.colorizeUser(currentUser.getName()),
+            TerminalColors.GREEN_BOLD,
+            TerminalColors.RESET,
+            TerminalColors.colorizePath(fileSystem.pwd()),
+            TerminalColors.RESET);
     }
 } 

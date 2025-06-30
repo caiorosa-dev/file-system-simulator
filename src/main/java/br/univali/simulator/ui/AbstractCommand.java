@@ -2,7 +2,7 @@ package br.univali.simulator.ui;
 
 public abstract class AbstractCommand implements Command {
     
-    protected final String name;
+    public final String name;
     protected final String usage;
     protected final String description;
     

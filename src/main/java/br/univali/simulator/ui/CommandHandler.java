@@ -21,7 +21,7 @@ public class CommandHandler {
         try {
             return executeCommand(line);
         } catch (Exception e) {
-            return "Erro: " + e.getMessage();
+            return TerminalColors.colorizeError("Erro: " + e.getMessage());
         }
     }
     
@@ -43,6 +43,6 @@ public class CommandHandler {
             return command.execute(context, args);
         }
         
-        return "Comando não reconhecido: " + commandName + ". Digite 'help' para ver comandos disponíveis.";
+        return TerminalColors.colorizeError("Comando não reconhecido: " + commandName + ". Digite 'help' para ver comandos disponíveis.");
     }
 } 

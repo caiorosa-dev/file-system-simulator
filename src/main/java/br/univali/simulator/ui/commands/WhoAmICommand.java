@@ -1,6 +1,7 @@
 package br.univali.simulator.ui.commands;
 
 import br.univali.simulator.ui.AbstractCommand;
+import br.univali.simulator.ui.TerminalColors;
 import br.univali.simulator.ui.ShellContext;
 
 public class WhoAmICommand extends AbstractCommand {
@@ -11,6 +12,6 @@ public class WhoAmICommand extends AbstractCommand {
     
     @Override
     public String execute(ShellContext context, String[] args) {
-        return context.getCurrentUser().getName();
+        return TerminalColors.colorizeUser(context.getCurrentUser().getName());
     }
 } 

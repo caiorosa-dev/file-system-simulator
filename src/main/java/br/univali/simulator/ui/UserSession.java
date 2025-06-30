@@ -14,8 +14,8 @@ public final class UserSession {
     }
     
     public void start(){
-        System.out.println("=== Simple File System Simulator ===");
-        System.out.println("Digite 'help' para ver os comandos disponíveis.");
+        System.out.println(TerminalColors.colorize("=== Simple File System Simulator ===", TerminalColors.CYAN_BOLD));
+        System.out.println("Digite " + TerminalColors.colorize("'help'", TerminalColors.YELLOW_BOLD) + " para ver os comandos disponíveis.");
         System.out.println();
         
         while(true){
