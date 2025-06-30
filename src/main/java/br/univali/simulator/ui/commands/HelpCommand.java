@@ -1,5 +1,7 @@
 package br.univali.simulator.ui.commands;
 
+import br.univali.simulator.ui.AbstractCommand;
+import br.univali.simulator.ui.Command;
 import br.univali.simulator.ui.ShellContext;
 
 public class HelpCommand extends AbstractCommand {

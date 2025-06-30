@@ -1,5 +1,6 @@
 package br.univali.simulator.ui.commands;
 
+import br.univali.simulator.ui.AbstractCommand;
 import br.univali.simulator.ui.ShellContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

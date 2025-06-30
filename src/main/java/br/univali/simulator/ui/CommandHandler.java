@@ -1,6 +1,5 @@
 package br.univali.simulator.ui;
 
-import br.univali.simulator.ui.commands.Command;
 import br.univali.simulator.ui.commands.CommandRegistry;
 
 public class CommandHandler {

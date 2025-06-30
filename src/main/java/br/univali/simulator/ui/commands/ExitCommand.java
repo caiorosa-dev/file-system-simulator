@@ -1,6 +1,7 @@
 package br.univali.simulator.ui.commands;
 
 import br.univali.simulator.persistence.FileSystemPersistence;
+import br.univali.simulator.ui.AbstractCommand;
 import br.univali.simulator.ui.ShellContext;
 
 public class ExitCommand extends AbstractCommand {

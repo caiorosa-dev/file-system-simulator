@@ -1,6 +1,4 @@
-package br.univali.simulator.ui.commands;
-
-import br.univali.simulator.ui.ShellContext;
+package br.univali.simulator.ui;
 
 public interface Command {
     /**
