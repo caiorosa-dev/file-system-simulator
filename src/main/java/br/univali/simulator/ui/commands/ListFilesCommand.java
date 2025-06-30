@@ -36,7 +36,7 @@ public class ListFilesCommand extends AbstractCommand {
             sb.append(TerminalColors.colorizeFileName(fcb.getName(), isDirectory)).append(" ");
         }
         
-        return sb.toString().trim();
+        return sb.toString() + "\n";
     }
     
     private String getVerboseListing(ShellContext context) {
