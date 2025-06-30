@@ -2,25 +2,29 @@ package br.univali.simulator.ui;
 
 import java.util.Scanner;
 
-import br.univali.simulator.fs.FileSystem;
-
 public final class UserSession {
 
     private final Scanner in = new Scanner(System.in);
-    private final InstructionParser parser;
-    private final FileSystem fs;
+    private final CommandHandler commandHandler;
+    private final ShellContext context;
 
-    public UserSession(FileSystem fs){
-        this.fs = fs;
-        this.parser = new InstructionParser(fs);
+    public UserSession(ShellContext context){
+        this.context = context;
+        this.commandHandler = new CommandHandler(context);
     }
+    
     public void start(){
+        System.out.println("=== Simple File System Simulator ===");
+        System.out.println("Digite 'help' para ver os comandos disponíveis.");
+        System.out.println();
+        
         while(true){
-            System.out.printf("%s@sim:%s$ ",
-                    fs.user().getName(), fs.pwd());
+            System.out.print(context.getPrompt());
             String line = in.nextLine();
-            String out  = parser.handle(line);
-            if(!out.isBlank()) System.out.println(out);
+            String output = commandHandler.handleCommand(line);
+            if(!output.isBlank()) {
+                System.out.println(output);
+            }
         }
     }
 }

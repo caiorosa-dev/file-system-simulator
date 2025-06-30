@@ -1,6 +1,7 @@
 package br.univali.simulator.fs;
 
 import java.util.Arrays;
+import java.util.Date;
 
 public final class File extends FileControlBlock {
 
@@ -15,7 +16,7 @@ public final class File extends FileControlBlock {
     /* leitura */
     public String read(User u, Disk disk){
         checkRead(u);
-        this.readAt = java.time.LocalDateTime.now();
+        this.readAt = new Date();
         return disk.read(blocks, size);
     }
     /* sobrescreve todo o arquivo */
@@ -25,7 +26,7 @@ public final class File extends FileControlBlock {
         this.blocks = disk.allocate(data.length());
         disk.write(blocks, data);
         this.size   = data.length();
-        this.editedAt = java.time.LocalDateTime.now();
+        this.editedAt = new Date();
     }
     /* cópia r-r */
     public File duplicate(String newName, Folder targetParent, Disk disk){

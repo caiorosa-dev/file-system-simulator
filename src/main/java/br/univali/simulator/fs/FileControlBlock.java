@@ -2,7 +2,7 @@ package br.univali.simulator.fs;
 
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter()
@@ -14,16 +14,16 @@ public abstract class FileControlBlock {
     protected String  name;
     protected final User owner;
     protected int mode;
-    protected LocalDateTime createdAt;
-    protected LocalDateTime editedAt;
-    protected LocalDateTime readAt;
+    protected Date createdAt;
+    protected Date editedAt;
+    protected Date readAt;
 
     protected FileControlBlock(String name, User owner, int mode) {
         this.inode     = ID_SEQ.getAndIncrement();
         this.name      = name;
         this.owner     = owner;
         this.mode      = mode;
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = new Date();
         this.editedAt  = this.createdAt;
         this.readAt    = this.createdAt;
     }
@@ -33,7 +33,7 @@ public abstract class FileControlBlock {
     /* edição simples de nome e modo */
     public void rename(String newName) {
         this.name    = newName;
-        this.editedAt = LocalDateTime.now();
+        this.editedAt = new Date();
     }
     public void chmod(int newMode) { this.mode = newMode; }
 

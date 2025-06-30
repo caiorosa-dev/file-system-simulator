@@ -1,5 +1,7 @@
 package br.univali.simulator.fs;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,6 +9,7 @@ import java.util.stream.Collectors;
 public final class FileSystem {
 
 	private final Disk   disk     = new Disk();
+	@Getter
 	private final Folder root     = new Folder("/", User.ROOT, 0777);
 	private Folder       cwd      = root;
 	private User         current  = User.ROOT;
@@ -14,6 +17,10 @@ public final class FileSystem {
 	public User   user(){ return current; }
 	public String pwd (){
 		return pathOf(cwd);
+	}
+	
+	public void setCurrentUser(User user) {
+		this.current = user;
 	}
 
 	public void cd(String path){
@@ -100,13 +107,23 @@ public final class FileSystem {
 
 	private Folder resolveFolder(String path){
 		if(path.equals("/")||path.isBlank()) return root;
+		
+		// Handle special cases for navigation
+		if(path.equals("./")) return cwd;
+		if(path.equals("..")) return cwd.isRoot() ? root : cwd.getParent();
+		
 		List<String> parts = Arrays.stream(path.split("/"))
 				.filter(p->!p.isBlank()).collect(Collectors.toList());
 		Folder cur = path.startsWith("/") ? root : cwd;
 		for(String p: parts){
 			if(p.equals("."))        continue;
-			if(p.equals("..")){ cur=(cur==root)?root:(Folder)cur.child(".."); continue;}
+			if(p.equals("..")){ 
+				cur = cur.isRoot() ? root : cur.getParent();
+				continue;
+			}
 			var next = cur.child(p);
+			if(next == null)
+				throw new IllegalArgumentException("Diretório não encontrado: "+p);
 			if(!(next instanceof Folder))
 				throw new IllegalArgumentException("Não é diretório: "+p);
 			cur=(Folder)next;
@@ -138,13 +155,17 @@ public final class FileSystem {
 	}
 
 	private String pathOf(Folder folder){
-		if(folder==root) return "/";
-		StringBuilder sb=new StringBuilder();
-		Folder cur=folder;
-		while(cur!=root){
-			sb.insert(0,"/"+cur.getName());
-			break;
+		if(folder == root) return "/";
+		
+		StringBuilder sb = new StringBuilder();
+		Folder cur = folder;
+		
+		// Build path by traversing up to root
+		while(cur != root && cur != null){
+			sb.insert(0, "/" + cur.getName());
+			cur = cur.getParent();
 		}
+		
 		return sb.toString();
 	}
 }
