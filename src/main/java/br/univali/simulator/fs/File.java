@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Date;
 
 public final class File extends FileControlBlock {
-
     private int   size;           // bytes válidos
     private int[] blocks;         // blocos no "disco"
 

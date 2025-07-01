@@ -7,7 +7,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter()
 public abstract class FileControlBlock {
-
     private static final AtomicInteger ID_SEQ = new AtomicInteger(1);
 
     protected final int inode;

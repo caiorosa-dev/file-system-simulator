@@ -4,7 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public final class Folder extends FileControlBlock {
-
     private final Map<String, FileControlBlock> children = new LinkedHashMap<>();
     private Folder parent;
 
