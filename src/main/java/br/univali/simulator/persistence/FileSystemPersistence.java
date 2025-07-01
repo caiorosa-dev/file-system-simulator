@@ -13,7 +13,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileSystemPersistence {
-    
     private static final String FILESYSTEM_FILE = "filesystem.json";
     private final Gson gson;
     

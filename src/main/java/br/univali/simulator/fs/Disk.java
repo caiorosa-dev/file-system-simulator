@@ -37,7 +37,7 @@ public final class Disk {
 		for(int b:blocks) used[b]=false;
 	}
 
-	public void write(int[] blocks,String s){
+	public void write(int[] blocks, String s){
 		char[] c = s.toCharArray();
 		for(int i=0;i<c.length;i++){
 			int blk=blocks[i/BLOCK_SIZE];
@@ -45,9 +45,9 @@ public final class Disk {
 		}
 	}
 
-	public String read(int[] blocks,int size){
+	public String read(int[] blocks, int size){
 		char[] out = new char[size];
-		for(int i=0;i<size;i++){
+		for(int i = 0; i < size; i++){
 			int blk=blocks[i/BLOCK_SIZE];
 			out[i]=data[blk*BLOCK_SIZE + (i%BLOCK_SIZE)];
 		}
@@ -55,8 +55,45 @@ public final class Disk {
 	}
 
 	public String bitmap(){
-		StringBuilder sb=new StringBuilder(TOTAL_BLOCKS);
+		StringBuilder sb =new StringBuilder(TOTAL_BLOCKS);
 		for(boolean b: used) sb.append(b?'#':'.');
 		return sb.toString();
+	}
+	
+	// Disk statistics methods
+	public int getUsedBlocks() {
+		int count = 0;
+		for (boolean b : used) {
+			if (b) count++;
+		}
+		return count;
+	}
+	
+	public int getFreeBlocks() {
+		return TOTAL_BLOCKS - getUsedBlocks();
+	}
+	
+	public int getTotalBlocks() {
+		return TOTAL_BLOCKS;
+	}
+	
+	public int getBlockSize() {
+		return BLOCK_SIZE;
+	}
+	
+	public long getTotalCapacity() {
+		return (long) TOTAL_BLOCKS * BLOCK_SIZE;
+	}
+	
+	public long getUsedCapacity() {
+		return (long) getUsedBlocks() * BLOCK_SIZE;
+	}
+	
+	public long getFreeCapacity() {
+		return (long) getFreeBlocks() * BLOCK_SIZE;
+	}
+	
+	public double getUsagePercentage() {
+		return (double) getUsedBlocks() / TOTAL_BLOCKS * 100.0;
 	}
 }

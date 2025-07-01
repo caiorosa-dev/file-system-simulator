@@ -19,6 +19,10 @@ public final class FileSystem {
 		return pathOf(cwd);
 	}
 	
+	public Disk getDisk() {
+		return disk;
+	}
+
 	public void setCurrentUser(User user) {
 		this.current = user;
 	}

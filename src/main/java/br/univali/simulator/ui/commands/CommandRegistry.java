@@ -43,6 +43,7 @@ public class CommandRegistry {
         
         // System information commands
         registerCommand(new BitmapCommand());
+        registerCommand(new DiskInfoCommand());
         registerCommand(new StatCommand());
         registerCommand(new FileCommand());
         registerCommand(new ClearCommand());

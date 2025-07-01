@@ -1,5 +1,6 @@
 package br.univali.simulator.ui.commands;
 
+import br.univali.simulator.fs.File;
 import br.univali.simulator.fs.FileControlBlock;
 import br.univali.simulator.fs.Folder;
 import br.univali.simulator.ui.AbstractCommand;
@@ -46,11 +47,20 @@ public class ListFilesCommand extends AbstractCommand {
         for (FileControlBlock fcb : currentDir.list().values()) {
             boolean isDirectory = fcb instanceof Folder;
             String type = isDirectory ? TerminalColors.colorize("<DIR>", TerminalColors.BLUE_BOLD) : "FILE";
+            String sizeInfo = "";
             
-            sb.append(String.format("%-10s %4d %s %s%n",
+            if (fcb instanceof File) {
+                File file = (File) fcb;
+                sizeInfo = String.format("%8d", file.getSize());
+            } else {
+                sizeInfo = "       -";
+            }
+            
+            sb.append(String.format("%-10s %4d %s %s %s%n",
                 type,
                 fcb.getInode(),
                 TerminalColors.colorizePermissions(fcb.getModeString()),
+                sizeInfo,
                 TerminalColors.colorizeFileName(fcb.getName(), isDirectory)));
         }
         

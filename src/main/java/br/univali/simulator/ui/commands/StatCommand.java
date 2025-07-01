@@ -154,9 +154,13 @@ public class StatCommand extends AbstractCommand {
         sb.append("  ").append(TerminalColors.colorize("Tipo:", TerminalColors.WHITE_BOLD))
             .append(" ").append(type).append("\n");
         
-        // Size (for files)
+        // Size and block information
         if (fcb instanceof File) {
-            // We can't directly access size from File class, so we'll show inode info instead
+            File file = (File) fcb;
+            sb.append("  ").append(TerminalColors.colorize("Tamanho:", TerminalColors.WHITE_BOLD))
+                .append(" ").append(file.getSize()).append(" bytes\n");
+            sb.append("  ").append(TerminalColors.colorize("Blocos usados:", TerminalColors.WHITE_BOLD))
+                .append(" ").append(file.getBlockCount()).append(" blocos\n");
             sb.append("  ").append(TerminalColors.colorize("Inode:", TerminalColors.WHITE_BOLD))
                 .append(" ").append(fcb.getInode()).append("\n");
         } else {
@@ -164,6 +168,8 @@ public class StatCommand extends AbstractCommand {
             int itemCount = folder.list().size();
             sb.append("  ").append(TerminalColors.colorize("Itens:", TerminalColors.WHITE_BOLD))
                 .append(" ").append(itemCount).append("\n");
+            sb.append("  ").append(TerminalColors.colorize("Inode:", TerminalColors.WHITE_BOLD))
+                .append(" ").append(fcb.getInode()).append("\n");
         }
         
         // Permissions

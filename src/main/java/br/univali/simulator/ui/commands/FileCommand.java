@@ -145,7 +145,12 @@ public class FileCommand extends AbstractCommand {
             }
         } else {
             // It's a file
+            File file = (File) fcb;
             sb.append(TerminalColors.colorize("arquivo regular", TerminalColors.WHITE));
+            
+            // Add size and block information
+            sb.append(", ").append(file.getSize()).append(" bytes");
+            sb.append(" (").append(file.getBlockCount()).append(" blocos)");
             
             // Try to determine file type by extension
             String name = fcb.getName();

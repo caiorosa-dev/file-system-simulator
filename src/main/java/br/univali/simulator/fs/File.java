@@ -13,6 +13,20 @@ public final class File extends FileControlBlock {
         this.size   = 0;
         this.blocks = new int[0];
     }
+    
+    // Getters for size and block information
+    public int getSize() {
+        return size;
+    }
+    
+    public int[] getBlocks() {
+        return Arrays.copyOf(blocks, blocks.length);
+    }
+    
+    public int getBlockCount() {
+        return blocks.length;
+    }
+    
     /* leitura */
     public String read(User u, Disk disk){
         checkRead(u);
